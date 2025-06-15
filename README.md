@@ -78,3 +78,15 @@ python delete_empty_forks.py
 
 10. **保存令牌**
     **重要**: 生成后的令牌只会显示一次。请立即复制并保存在安全的地方，因为离开页面后将无法再次查看完整的令牌。
+
+## FAQ
+
+### Q: 为什么有些仓库会提示 451 错误并被跳过？
+A:  
+GitHub API 返回的 451 错误（Repository access blocked）表示该仓库因法律原因（如 DMCA 投诉）被 GitHub 屏蔽，无法访问或操作。  
+脚本检测到 451 错误时，会自动跳过这些仓库，不会中断整体流程。  
+这类仓库通常无法通过任何 API 或网页方式访问或删除，属于正常现象，无需担心。
+
+**参考资料：**  
+- [GitHub DMCA Policy](https://github.com/github/dmca)  
+- [GitHub 451 错误官方说明](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/451)

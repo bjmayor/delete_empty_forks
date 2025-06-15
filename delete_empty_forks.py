@@ -44,9 +44,11 @@ def main():
                         forks_to_delete.append(repo)
                         print(f"Found fork with no commits: {repo.full_name}")
                 except GithubException as e:
-                    # This can happen if the repository is empty
-                    print(f"Error checking commits for {repo.full_name}: {e}")
-                    forks_to_delete.append(repo)
+                    if e.status == 451:
+                        print(f"仓库 {repo.full_name} 被 451 封禁，已跳过。")
+                        continue
+                    else:
+                        raise
 
                 # Add a small delay to avoid hitting rate limits
                 time.sleep(0.5)
